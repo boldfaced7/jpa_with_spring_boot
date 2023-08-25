@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @DiscriminatorValue("M")
 @Entity
 public class Movie extends Item {

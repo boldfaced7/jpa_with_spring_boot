@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Entity
 public class OrderItem {
     @Id
