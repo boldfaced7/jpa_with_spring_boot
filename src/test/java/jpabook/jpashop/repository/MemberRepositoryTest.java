@@ -9,6 +9,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
@@ -22,16 +24,12 @@ class MemberRepositoryTest {
     @Transactional
     @Test
     void testMember() {
-        Member member = Member.builder()
-                .username("memberA")
-                .build();
+        Member member = new Member();
+        member.setName("MemberA");
+        memberRepository.save(member);
 
-        Long savedId = memberRepository.save(member);
+        List<Member> members = memberRepository.findAll();
 
-        Member foundMember = memberRepository.find(savedId);
-
-        assertThat(foundMember.getId()).isEqualTo(member.getId());
-        assertThat(foundMember.getUsername()).isEqualTo(member.getUsername());
-        assertThat(foundMember).isEqualTo(member);
+        assertThat(members.size()).isEqualTo(1);
     }
 }
